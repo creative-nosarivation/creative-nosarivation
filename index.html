@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Nosarivation — 一般社団法人</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f5f0e8;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: #2c2c2e;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== HEADER ===== */
+    header {
+      position: sticky;
+      top: 0;
+      background: #f5f0e8;
+      z-index: 100;
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-text .sub {
+      font-size: 10px;
+      color: #888;
+      letter-spacing: 0.05em;
+    }
+
+    .logo-text .main {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: #2c2c2e;
+      transition: opacity 0.2s;
+    }
+
+    nav a:hover { opacity: 0.6; }
+
+    .btn-orange {
+      background: #e8845a;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-orange:hover { opacity: 0.85; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid #2c2c2e;
+      border-radius: 999px;
+      padding: 10px 28px;
+      font-size: 14px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      background: transparent;
+      cursor: pointer;
+      color: #2c2c2e;
+      transition: background 0.2s;
+    }
+
+    .btn-outline:hover { background: rgba(0,0,0,0.04); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 60px 80px 60px 120px;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      flex: 0 0 auto;
+      max-width: 460px;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.45;
+      color: #2c2c2e;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero p {
+      font-size: 13.5px;
+      line-height: 2;
+      color: #4a4a4a;
+      margin-bottom: 14px;
+      max-width: 300px;
+    }
+
+    .hero-right {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 580px;
+      height: 580px;
+    }
+
+    /* Circular photos */
+    .hero-circle {
+      position: absolute;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+
+    .hero-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-circle-1 {
+      width: 300px;
+      height: 300px;
+      top: 0px;
+      right: 30px;
+    }
+
+    .hero-circle-2 {
+      width: 460px;
+      height: 320px;
+      bottom: -10px;
+      left: -40px;
+      border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+    }
+
+    /* ===== SHARED DECORATIVE ===== */
+    .deco {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ===== SECTION COMMONS ===== */
+    .section-label {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .squiggle-line {
+      display: block;
+      margin-bottom: 32px;
+    }
+
+    .dotted-line {
+      display: block;
+      margin: 6px auto 32px;
+    }
+
+    /* ===== NEWS ===== */
+    .section-news {
+      position: relative;
+      padding: 40px 80px 80px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 22px;
+      padding: 48px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .news-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 18px 0;
+      border-bottom: 1px solid #efefef;
+    }
+
+    .news-date { font-size: 13px; color: #aaa; min-width: 90px; }
+    .news-body { flex: 1; font-size: 14px; }
+
+    .tag-pink {
+      background: #fde8f0;
+      color: #c4607a;
+      border-radius: 999px;
+      padding: 3px 14px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .news-footer { display: flex; justify-content: flex-end; margin-top: 20px; }
+
+    /* ===== SERVICES ===== */
+    .section-services {
+      position: relative;
+      padding: 80px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 860px;
+      margin: 48px auto 0;
+    }
+
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .service-photo-wrap {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin-bottom: 20px;
+    }
+
+    .service-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .service-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-icon {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      bottom: 2px;
+      left: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-title { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
+
+    .service-desc {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #666;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .link-more { font-size: 14px; font-weight: 700; }
+    .link-more:hover { text-decoration: underline; }
+
+    /* ===== MVV ===== */
+    .section-mvv {
+      padding: 20px 80px 80px;
+      position: relative;
+    }
+
+    .mvv-card {
+      background: white;
+      border-radius: 22px;
+      padding: 56px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .mvv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 44px;
+      text-align: left;
+    }
+
+    .mvv-col {
+      padding: 0 40px;
+      border-right: 1px solid #efefef;
+    }
+
+    .mvv-col:first-child { padding-left: 0; }
+    .mvv-col:last-child { border-right: none; }
+
+    .mvv-letter {
+      font-size: 60px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .mvv-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+
+    .mvv-desc {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #666;
+    }
+
+    .mvv-list {
+      list-style: none;
+      font-size: 13px;
+      line-height: 2.4;
+      color: #888;
+    }
+
+    .mvv-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mvv-list li::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ===== ABOUT ===== */
+    .section-about {
+      position: relative;
+      padding: 80px 120px;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      overflow: hidden;
+    }
+
+    .about-left {
+      flex: 0 0 auto;
+      max-width: 400px;
+      z-index: 2;
+    }
+
+    .about-heading {
+      font-size: 30px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .about-text {
+      font-size: 13.5px;
+      line-height: 2;
+      color: #555;
+      margin: 20px 0 28px;
+    }
+
+    .about-right {
+      flex: 1;
+      position: relative;
+      height: 420px;
+    }
+
+    /* Blob-shaped photo */
+    .about-blob {
+      position: absolute;
+      width: 100%;
+      max-width: 560px;
+      height: 420px;
+      overflow: hidden;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+    }
+
+    .about-blob img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ===== CTA ===== */
+    .section-cta {
+      padding: 20px 80px 80px;
+      position: relative;
+    }
+
+    .cta-card {
+      background: #c4e2d4;
+      border-radius: 22px;
+      padding: 40px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .cta-icon-wrap {
+      width: 52px;
+      height: 52px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cta-text { flex: 1; }
+    .cta-text h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .cta-text p { font-size: 13px; color: #555; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #2c2c2e;
+      color: #999;
+      padding: 28px 80px;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    /* ===== IMAGE PLACEHOLDERS (remove after adding real images) ===== */
+    .ph { width: 100%; height: 100%; display: block; }
+    .ph-sea1  { background: linear-gradient(160deg, #a8d0e6 0%, #4a90a4 50%, #2d6e7e 100%); }
+    .ph-sea2  { background: linear-gradient(160deg, #ffd580 0%, #ff9f68 30%, #4a8fa4 65%, #1e6e5e 100%); }
+    .ph-p1    { background: linear-gradient(140deg, #d4e8d4 0%, #8ab48a 100%); }
+    .ph-p2    { background: linear-gradient(140deg, #e8d8c8 0%, #c4a882 100%); }
+    .ph-p3    { background: linear-gradient(140deg, #c8d8e8 0%, #8ab4cc 100%); }
+    .ph-meet  { background: linear-gradient(140deg, #e0d4c8 0%, #b89878 100%); }
+    .ph-work  { background: linear-gradient(140deg, #c8d8e0 0%, #88a8b8 100%); }
+    .ph-group { background: linear-gradient(140deg, #c4d4c4 0%, #7a9a7a 100%); }
+  </style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="logo">
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+      <circle cx="14" cy="12" r="11" fill="#f8c8dd" opacity="0.85"/>
+      <circle cx="24" cy="12" r="11" fill="#cfe2f6" opacity="0.75"/>
+      <circle cx="14" cy="24" r="11" fill="#d9efe6" opacity="0.75"/>
+      <circle cx="24" cy="24" r="11" fill="#fdf2cf" opacity="0.75"/>
+    </svg>
+    <div class="logo-text">
+      <div class="sub">一般社団法人</div>
+      <div class="main">Creative<br>Nosarivation</div>
+    </div>
+  </div>
+  <nav>
+    <a href="#">トップ</a>
+    <a href="#news">お知らせ</a>
+    <a href="#services">事業内容</a>
+    <a href="#mvv">MVV</a>
+    <a href="#about">私たちについて</a>
+  </nav>
+  <a href="#contact" class="btn-orange">お問い合わせ ✉</a>
+</header>
+
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+
+  <!-- Decorative: left pink outline circle -->
+  <div class="deco" style="left:-55px;top:38%;width:130px;height:130px;border-radius:50%;border:2.5px solid #f8c8dd;"></div>
+
+  <!-- Decorative shapes near center -->
+  <div class="deco" style="left:52%;top:17%;width:16px;height:16px;border-radius:50%;background:#a8d8c0;"></div>
+  <div class="deco" style="left:49%;top:27%;">
+    <svg width="22" height="22" viewBox="0 0 22 22"><polygon points="11,2 21,20 1,20" fill="#f4a0a0"/></svg>
+  </div>
+  <div class="deco" style="left:51%;top:48%;width:13px;height:13px;border-radius:50%;background:#8bb8d4;"></div>
+  <div class="deco" style="left:50%;top:62%;width:14px;height:14px;border-radius:50%;background:#f5d47a;"></div>
+
+  <!-- Decorative dots (right of circles) -->
+  <div class="deco" style="right:48px;bottom:18%;">
+    <svg width="64" height="52" viewBox="0 0 64 52">
+      <g fill="#8bb8d4" opacity="0.55">
+        <circle cx="8" cy="8" r="3.5"/><circle cx="24" cy="8" r="3.5"/><circle cx="40" cy="8" r="3.5"/>
+        <circle cx="8" cy="24" r="3.5"/><circle cx="24" cy="24" r="3.5"/><circle cx="40" cy="24" r="3.5"/>
+        <circle cx="8" cy="40" r="3.5"/><circle cx="24" cy="40" r="3.5"/><circle cx="40" cy="40" r="3.5"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Decorative: top-right pink blob -->
+  <div class="deco" style="right:-30px;top:-20px;width:100px;height:100px;border-radius:50%;background:#f8c8dd;opacity:0.35;"></div>
+
+  <div class="hero-left">
+    <h1>小さな力が<br>紡がれるとき、<br>地域は動き出す。</h1>
+    <p>私たちCreative Nosarivationは、世代や立場の違いを超え、対等にまざりあうことを大切にしています。</p>
+    <p>地域に関わる多様な人々が共に考え、共に動く。そのプロセスの中から、過疎化などの諸課題に楽しみながら向き合える、クリエイティブな地域社会が生まれると信じています。</p>
+    <p>小さなつながりが、地域の大きな活力になる。その確信を胸に、私たちは今日も歩みを進めます。</p>
+    <a href="#about" class="btn-orange" style="margin-top:28px;">私たちの想い →</a>
+  </div>
+
+  <div class="hero-right">
+    <!-- 上の円 -->
+    <div class="hero-circle hero-circle-1">
+      <!-- 実際の写真: images/hero-1.jpg に差し替えてください -->
+      <img src="images/hero-1.jpg" alt="海の風景"
+        onerror="this.outerHTML='<div class=\'ph ph-sea1\'></div>'">
+    </div>
+    <!-- 下の円 -->
+    <div class="hero-circle hero-circle-2">
+      <!-- 実際の写真: images/hero-2.jpg に差し替えてください -->
+      <img src="images/hero-2.jpg" alt="夕日の海"
+        onerror="this.outerHTML='<div class=\'ph ph-sea2\'></div>'">
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== NEWS ===================== -->
+<section class="section-news" id="news">
+
+  <!-- Decorative: diagonal lines -->
+  <div class="deco" style="left:50%;top:28px;transform:translateX(-50%);">
+    <svg width="56" height="28" viewBox="0 0 56 28" fill="none">
+      <path d="M2 26 L12 2" stroke="#8bb8d4" stroke-width="2" stroke-linecap="round"/>
+      <path d="M16 26 L26 2" stroke="#8bb8d4" stroke-width="2" stroke-linecap="round"/>
+      <path d="M30 26 L40 2" stroke="#8bb8d4" stroke-width="2" stroke-linecap="round"/>
+      <path d="M44 26 L54 2" stroke="#8bb8d4" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- Decorative: green dots grid -->
+  <div class="deco" style="right:52px;top:60px;">
+    <svg width="68" height="68" viewBox="0 0 68 68">
+      <g fill="#6cbfad" opacity="0.4">
+        <circle cx="8" cy="8" r="3.5"/><circle cx="24" cy="8" r="3.5"/><circle cx="40" cy="8" r="3.5"/>
+        <circle cx="8" cy="24" r="3.5"/><circle cx="24" cy="24" r="3.5"/><circle cx="40" cy="24" r="3.5"/>
+        <circle cx="8" cy="40" r="3.5"/><circle cx="24" cy="40" r="3.5"/><circle cx="40" cy="40" r="3.5"/>
+        <circle cx="8" cy="56" r="3.5"/><circle cx="24" cy="56" r="3.5"/><circle cx="40" cy="56" r="3.5"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Decorative: pink circle right -->
+  <div class="deco" style="right:28px;bottom:60px;width:85px;height:85px;border-radius:50%;background:#f8c8dd;opacity:0.4;"></div>
+
+  <div class="card">
+    <h2 class="section-label">お知らせ</h2>
+    <svg class="squiggle-line" width="64" height="10" viewBox="0 0 64 10" fill="none">
+      <path d="M0 5 Q8 1 16 5 Q24 9 32 5 Q40 1 48 5 Q56 9 64 5" stroke="#6cbfad" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="news-row">
+      <span class="news-date">2026.06.26</span>
+      <span class="news-body">一般社団法人Creative Nosarivationを立ち上げました。</span>
+      <span class="tag-pink">お知らせ</span>
+    </div>
+    <div class="news-footer">
+      <a href="#" class="btn-outline">一覧へ</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section-services" id="services">
+
+  <!-- Decorative -->
+  <div class="deco" style="left:88px;top:90px;">
+    <svg width="22" height="34" viewBox="0 0 22 34" fill="none">
+      <path d="M4 32 L12 2" stroke="#8bb8d4" stroke-width="2" stroke-linecap="round"/>
+      <path d="M13 32 L21 2" stroke="#8bb8d4" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="deco" style="right:80px;bottom:240px;">
+    <svg width="18" height="18" viewBox="0 0 18 18"><polygon points="9,1 17,17 1,17" fill="#f4a0a0"/></svg>
+  </div>
+
+  <h2 class="section-label">実施する事業内容</h2>
+  <svg width="60" height="10" viewBox="0 0 60 10" fill="none" style="display:block;margin:6px auto 0">
+    <path d="M0 5 Q7.5 1 15 5 Q22.5 9 30 5 Q37.5 1 45 5 Q52.5 9 60 5" stroke="#6cbfad" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <div class="services-grid">
+    <!-- 探究支援 -->
+    <div class="service-item">
+      <div class="service-photo-wrap">
+        <div class="service-photo">
+          <img src="images/service-1.png" alt="探究支援"
+            onerror="this.outerHTML='<div class=\'ph ph-p1\'></div>'">
+        </div>
+        <div class="service-icon" style="background:#6cbfad;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 L22 22"/>
+          </svg>
+        </div>
+      </div>
+      <h3 class="service-title">探究支援</h3>
+      <p class="service-desc">アプリ開発やDX推進、地域貢献等の探究活動の技術的支援や伴走支援を行います。</p>
+      <a href="#" class="link-more">詳しく見る</a>
+    </div>
+
+    <!-- ITシステム構築 -->
+    <div class="service-item">
+      <div class="service-photo-wrap">
+        <div class="service-photo">
+          <img src="images/service-2.png" alt="ITシステム構築"
+            onerror="this.outerHTML='<div class=\'ph ph-p2\'></div>'">
+        </div>
+        <div class="service-icon" style="background:#6cbfad;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+      </div>
+      <h3 class="service-title">ITシステム構築</h3>
+      <p class="service-desc">中小企業の在庫管理システムや会計システムの構築サポート等、業務効率化を支援します。</p>
+      <a href="#" class="link-more">詳しく見る</a>
+    </div>
+
+    <!-- イベント企画・運営 -->
+    <div class="service-item">
+      <div class="service-photo-wrap">
+        <div class="service-photo">
+          <img src="images/service-3.png" alt="イベント企画・運営"
+            onerror="this.outerHTML='<div class=\'ph ph-p3\'></div>'">
+        </div>
+        <div class="service-icon" style="background:#e8845a;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+      </div>
+      <h3 class="service-title">イベント企画・運営</h3>
+      <p class="service-desc">地域のイベントや教育系のイベントの企画・運営をサポートします。</p>
+      <a href="#" class="link-more">詳しく見る</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== MVV ===================== -->
+<section class="section-mvv" id="mvv">
+
+  <!-- Decorative: blue dots left -->
+  <div class="deco" style="left:50px;top:50%;transform:translateY(-50%);">
+    <svg width="52" height="68" viewBox="0 0 52 68">
+      <g fill="#8bb8d4" opacity="0.4">
+        <circle cx="8" cy="8" r="3.5"/><circle cx="24" cy="8" r="3.5"/><circle cx="40" cy="8" r="3.5"/>
+        <circle cx="8" cy="24" r="3.5"/><circle cx="24" cy="24" r="3.5"/><circle cx="40" cy="24" r="3.5"/>
+        <circle cx="8" cy="40" r="3.5"/><circle cx="24" cy="40" r="3.5"/><circle cx="40" cy="40" r="3.5"/>
+        <circle cx="8" cy="56" r="3.5"/><circle cx="24" cy="56" r="3.5"/><circle cx="40" cy="56" r="3.5"/>
+      </g>
+    </svg>
+  </div>
+  <!-- green triangle left -->
+  <div class="deco" style="left:90px;top:52%;">
+    <svg width="20" height="20" viewBox="0 0 20 20"><polygon points="0,20 20,10 0,0" fill="#6cbfad" opacity="0.7"/></svg>
+  </div>
+  <!-- yellow stripes right -->
+  <div class="deco" style="right:56px;bottom:60px;">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+      <path d="M2 42 L42 2" stroke="#f5d47a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M10 42 L42 10" stroke="#f5d47a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M20 42 L42 20" stroke="#f5d47a" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="mvv-card">
+    <h2 class="section-label">目指すもの</h2>
+    <svg class="dotted-line" width="60" height="10" viewBox="0 0 60 10" fill="none">
+      <path d="M0 5 Q7.5 1 15 5 Q22.5 9 30 5 Q37.5 1 45 5 Q52.5 9 60 5"
+        stroke="#f4a0b5" stroke-width="2.5" stroke-dasharray="4 3" fill="none" stroke-linecap="round"/>
+    </svg>
+
+    <div class="mvv-grid">
+      <div class="mvv-col">
+        <div class="mvv-letter" style="color:#6cbfad;">M</div>
+        <div class="mvv-title">Mission</div>
+        <p class="mvv-desc">小さなつながりが、地域の大きな活力になると信じ、共に考え、共に動き続けます。</p>
+        <div style="margin-top:20px;">
+          <svg width="18" height="18" viewBox="0 0 18 18"><polygon points="0,18 9,0 18,18" fill="#6cbfad" opacity="0.7"/></svg>
+        </div>
+      </div>
+
+      <div class="mvv-col">
+        <div class="mvv-letter" style="color:#e8845a;">V</div>
+        <div class="mvv-title">Vision</div>
+        <p class="mvv-desc">多様な人々が対等につながり、クリエイティブな発想と行動で、持続可能な地域社会をつくります。</p>
+        <div style="margin-top:20px;">
+          <svg width="14" height="14" viewBox="0 0 14 14"><polygon points="0,14 7,0 14,14" fill="#e8845a" opacity="0.7"/></svg>
+        </div>
+      </div>
+
+      <div class="mvv-col">
+        <div class="mvv-letter" style="color:#b8a5d4;">V</div>
+        <div class="mvv-title">Value</div>
+        <ul class="mvv-list" style="color:#b8a5d4;">
+          <li>対等にまざりあう</li>
+          <li>楽しみながら取り組む</li>
+          <li>小さな一歩を大切にする</li>
+          <li>挑戦を楽しみ、学び合う</li>
+        </ul>
+        <div style="margin-top:20px;">
+          <svg width="12" height="12" viewBox="0 0 12 12"><rect width="12" height="12" rx="2" fill="#b8a5d4" opacity="0.7"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== ABOUT ===================== -->
+<section class="section-about" id="about">
+
+  <!-- Yellow blob deco (behind title) -->
+  <div class="deco" style="left:490px;top:80px;z-index:0;">
+    <svg width="65" height="65" viewBox="0 0 65 65">
+      <path d="M32 4 C50 2 63 14 63 30 C63 50 50 63 32 63 C14 63 2 50 2 32 C2 14 14 6 32 4Z" fill="#f5d47a"/>
+    </svg>
+  </div>
+
+  <!-- Dots deco top-right -->
+  <div class="deco" style="right:52px;top:80px;">
+    <svg width="64" height="80" viewBox="0 0 64 80">
+      <g fill="#e8845a" opacity="0.35">
+        <circle cx="8" cy="8" r="3.5"/><circle cx="24" cy="8" r="3.5"/><circle cx="40" cy="8" r="3.5"/>
+        <circle cx="8" cy="24" r="3.5"/><circle cx="24" cy="24" r="3.5"/><circle cx="40" cy="24" r="3.5"/>
+        <circle cx="8" cy="40" r="3.5"/><circle cx="24" cy="40" r="3.5"/><circle cx="40" cy="40" r="3.5"/>
+        <circle cx="8" cy="56" r="3.5"/><circle cx="24" cy="56" r="3.5"/><circle cx="40" cy="56" r="3.5"/>
+        <circle cx="8" cy="72" r="3.5"/><circle cx="24" cy="72" r="3.5"/><circle cx="40" cy="72" r="3.5"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Circle outline center-bottom -->
+  <div class="deco" style="right:30%;bottom:22%;width:44px;height:44px;border-radius:50%;border:2px solid #8bb8d4;"></div>
+  <!-- Triangle -->
+  <div class="deco" style="right:26%;bottom:18%;">
+    <svg width="16" height="16" viewBox="0 0 16 16"><polygon points="8,1 15,15 1,15" fill="#f4a0a0"/></svg>
+  </div>
+  <!-- Blob outline right edge -->
+  <div class="deco" style="right:16px;bottom:28%;">
+    <svg width="56" height="56" viewBox="0 0 56 56">
+      <path d="M28 4 C42 4 52 13 52 26 C52 42 43 52 28 52 C13 52 4 42 4 28 C4 14 14 4 28 4Z"
+        fill="none" stroke="#8bb8d4" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="about-left">
+    <h2 class="about-heading">
+      私たちについて
+      <svg width="44" height="44" viewBox="0 0 44 44">
+        <path d="M22 3 C34 3 41 11 41 22 C41 34 34 41 22 41 C10 41 3 34 3 22 C3 10 10 3 22 3Z" fill="#f5d47a"/>
+      </svg>
+    </h2>
+    <svg width="60" height="10" viewBox="0 0 60 10" fill="none" style="margin-bottom:18px;">
+      <path d="M0 5 Q7.5 1 15 5 Q22.5 9 30 5 Q37.5 1 45 5 Q52.5 9 60 5" stroke="#6cbfad" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <p class="about-text">当法人は、海外大学に進学している学生や東京大学、京都大学、九州大学等に在籍する学生たちとそれをサポートする、教育現場や民間企業での経験豊富な社会人たちで構成されています。大学生の貪欲な学びや行動力、社会人の確固たる実現力を併せることにより、解決の難しい課題に対しても力強く取り組むことができます。</p>
+    <a href="#" class="btn-outline">詳しく見る</a>
+  </div>
+
+  <div class="about-right">
+    <!-- Blob photo (large, single) -->
+    <div class="about-blob">
+      <img src="images/about-group.jpg" alt="グループ写真"
+        onerror="this.outerHTML='<div class=\'ph ph-group\'></div>'">
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CTA ===================== -->
+<section class="section-cta" id="contact">
+  <!-- Triangle deco -->
+  <div class="deco" style="right:160px;bottom:32px;">
+    <svg width="14" height="14" viewBox="0 0 14 14"><polygon points="7,1 13,13 1,13" fill="#b8a5d4" opacity="0.6"/></svg>
+  </div>
+
+  <div class="cta-card">
+    <div class="cta-icon-wrap">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6cbfad" stroke-width="2" stroke-linecap="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="M2 8 L12 14 L22 8"/>
+      </svg>
+    </div>
+    <div class="cta-text">
+      <h2>一緒に、地域の未来をつくりませんか？</h2>
+      <p>ご相談・ご質問など、お気軽にお問い合わせください。</p>
+    </div>
+    <a href="mailto:info@creative-nosarivation.jp" class="btn-orange">コンタクトする →</a>
+  </div>
+</section>
+
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <p>© 2026 一般社団法人 Creative Nosarivation. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
